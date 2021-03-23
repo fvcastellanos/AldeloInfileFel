@@ -6,16 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CefSharp.WinForms;
 
 namespace AldeloInfileFel
 {
     public partial class frmInvoice : Form
     {
         private InvoiceService _invoiceService;
+        private ChromiumWebBrowser _browser;
 
         public frmInvoice()
         {
             InitializeComponent();
+
+            _browser = new ChromiumWebBrowser("about:blank");
+            pnBrowser.Controls.Add(_browser);
 
             _invoiceService = new InvoiceService(new OrderRepository());
         }
@@ -32,6 +37,7 @@ namespace AldeloInfileFel
             edNombre.Text = "";
             edCorreo.Text = "";
             edResultado.Text = "";
+            _browser.Load("about:blank");
             edNit.Focus();
         }
 
@@ -86,6 +92,7 @@ namespace AldeloInfileFel
             builder.AppendLine("Origen: " + invoiceInformation.Origin);
 
             edResultado.Text = builder.ToString();
+            CargarFactura(invoiceInformation.UUID);
         }
 
         private void ObtenerOrden()
@@ -94,6 +101,9 @@ namespace AldeloInfileFel
 
             if (argumentos.Length > 0)
             {
+                if (argumentos.ToList().Contains("readonly"))
+                    edOrden.Enabled = false;
+
                 var orden = argumentos.ToList()
                     .FirstOrDefault<string>(arg => arg.Contains("OrderId"));
 
@@ -107,6 +117,12 @@ namespace AldeloInfileFel
                     }
                 }
             }
+        }
+
+        private void CargarFactura(string UUID)
+        {
+            var url = "https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid=" + UUID;
+            _browser.Load(url);
         }
 
         private void frmInvoice_Load(object sender, EventArgs e)

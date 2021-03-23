@@ -41,6 +41,7 @@ namespace AldeloInfileFel
             this.btnCancelar = new System.Windows.Forms.Button();
             this.edResultado = new System.Windows.Forms.TextBox();
             this.edOrden = new System.Windows.Forms.NumericUpDown();
+            this.pnBrowser = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.edOrden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +144,7 @@ namespace AldeloInfileFel
             this.edResultado.Multiline = true;
             this.edResultado.Name = "edResultado";
             this.edResultado.ReadOnly = true;
-            this.edResultado.Size = new System.Drawing.Size(637, 255);
+            this.edResultado.Size = new System.Drawing.Size(637, 128);
             this.edResultado.TabIndex = 61;
             this.edResultado.TabStop = false;
             // 
@@ -156,12 +157,20 @@ namespace AldeloInfileFel
             this.edOrden.Size = new System.Drawing.Size(120, 26);
             this.edOrden.TabIndex = 5;
             // 
+            // pnBrowser
+            // 
+            this.pnBrowser.Location = new System.Drawing.Point(29, 322);
+            this.pnBrowser.Name = "pnBrowser";
+            this.pnBrowser.Size = new System.Drawing.Size(636, 338);
+            this.pnBrowser.TabIndex = 62;
+            // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(693, 450);
+            this.ClientSize = new System.Drawing.Size(693, 672);
+            this.Controls.Add(this.pnBrowser);
             this.Controls.Add(this.edOrden);
             this.Controls.Add(this.edResultado);
             this.Controls.Add(this.btnCancelar);
@@ -200,6 +209,7 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox edResultado;
         private System.Windows.Forms.NumericUpDown edOrden;
+        private System.Windows.Forms.Panel pnBrowser;
     }
 }
 
