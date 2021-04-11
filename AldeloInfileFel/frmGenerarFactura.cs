@@ -12,8 +12,10 @@ namespace AldeloInfileFel
 {
     public partial class frmInvoice : Form
     {
-        private InvoiceService _invoiceService;
-        private ChromiumWebBrowser _browser;
+        private const string DownStatus = "DOWN";
+        private readonly InvoiceService _invoiceService;
+        private readonly ChromiumWebBrowser _browser;
+        private readonly Configuration _configuration;
 
         public frmInvoice()
         {
@@ -23,6 +25,7 @@ namespace AldeloInfileFel
             pnBrowser.Controls.Add(_browser);
 
             _invoiceService = new InvoiceService(new OrderRepository());
+            _configuration = ConfigurationService.LoadConfiguration();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -121,13 +124,59 @@ namespace AldeloInfileFel
 
         private void CargarFactura(string UUID)
         {
-            var url = "https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid=" + UUID;
+            var url = _configuration.PreviewUrl.Replace("#value", UUID);
             _browser.Load(url);
         }
 
         private void frmInvoice_Load(object sender, EventArgs e)
         {
             ObtenerOrden();
+            ShowApiStatus();
+        }
+
+        private void ShowApiStatus()
+        {
+            var status = _invoiceService.GetApiStatus();
+
+            lbApiStatus.ForeColor = System.Drawing.Color.DarkGreen;
+            lbSignature.ForeColor = System.Drawing.Color.DarkGreen;
+            lbCertificate.ForeColor = System.Drawing.Color.DarkGreen;
+
+            lbApiStatus.Text = status.Status;
+            lbSignature.Text = status.Components.InFile.Details.Signature;
+            lbCertificate.Text = status.Components.InFile.Details.Certificate;
+
+            if (DownStatus.Equals(lbApiStatus.Text))
+            {
+                lbApiStatus.ForeColor = System.Drawing.Color.Red;
+            }
+
+            if (DownStatus.Equals(lbSignature.Text))
+            {
+                lbSignature.ForeColor = System.Drawing.Color.Red;
+            }
+
+            if (DownStatus.Equals(lbCertificate.Text))
+            {
+                lbCertificate.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
+
+        private void tmApiStatus_Tick(object sender, EventArgs e)
+        {
+            ShowApiStatus();
+        }
+
+        private void btnStatus_Click(object sender, EventArgs e)
+        {
+            ShowApiStatus();
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            var info = new frmInfo();
+            info.ShowDialog();
         }
     }
 }

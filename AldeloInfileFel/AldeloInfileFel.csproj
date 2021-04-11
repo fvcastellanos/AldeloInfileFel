@@ -150,17 +150,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\AldeloFelClient.cs" />
+    <Compile Include="Domain\Configuration.cs" />
+    <Compile Include="Domain\InfileDetails.cs" />
+    <Compile Include="Domain\InFileStatus.cs" />
     <Compile Include="Domain\InvoiceGenerationErrorResponse.cs" />
     <Compile Include="Domain\InvoiceGenerationRequest.cs" />
     <Compile Include="Domain\InvoiceGenerationResponse.cs" />
     <Compile Include="Domain\ItemDetail.cs" />
     <Compile Include="Domain\CertificationResult.cs" />
     <Compile Include="Domain\OrderDetail.cs" />
+    <Compile Include="Domain\OrderPayment.cs" />
+    <Compile Include="Domain\ApiStatus.cs" />
+    <Compile Include="Domain\StatusComponents.cs" />
     <Compile Include="frmGenerarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmGenerarFactura.Designer.cs">
       <DependentUpon>frmGenerarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo.Designer.cs">
+      <DependentUpon>frmInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +181,9 @@
     <Compile Include="Services\InvoiceService.cs" />
     <EmbeddedResource Include="frmGenerarFactura.resx">
       <DependentUpon>frmGenerarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo.resx">
+      <DependentUpon>frmInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

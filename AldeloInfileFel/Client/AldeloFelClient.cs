@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Http;
+﻿using AldeloInfileFel.Domain;
+using AldeloInfileFel.Services;
 using Newtonsoft.Json;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using AldeloInfileFel.Domain;
+using System.Text;
 
 namespace AldeloInfileFel.Client
 {
     public class AldeloFelClient
     {
-        private static HttpClient _client = new HttpClient();
+        private static readonly HttpClient _client = new HttpClient();
+        private static readonly Configuration _configuration = ConfigurationService.LoadConfiguration();
 
         public static InvoiceGenerationResponse GenerateInvoiceRequest(InvoiceGenerationRequest request)
-        {
-            var apiUrl = Environment.GetEnvironmentVariable("ALDELO_FEL_API_URL");
+        {            
+            var apiUrl = _configuration.FelApiUrl;
             var payload = JsonConvert.SerializeObject(request);
             var content = new StringContent(payload, Encoding.UTF8);
             content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
@@ -32,6 +32,23 @@ namespace AldeloInfileFel.Client
 
             return BuildErrorResponse(responsePayload);
         }
+
+        public static ApiStatus GetApiFelStatus()
+        {
+            var healthUrl = _configuration.FelApiHealth;
+
+            var response = _client.GetAsync(healthUrl);
+
+            var responsePayload = response.Result
+                .EnsureSuccessStatusCode()
+                .Content
+                .ReadAsStringAsync()
+                .Result;
+
+            return JsonConvert.DeserializeObject<ApiStatus>(responsePayload);
+        }
+
+        // ------------------------------------------------------------------------------------------------
 
         private static InvoiceGenerationResponse BuildSuccessResponse(string message)
         {

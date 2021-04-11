@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using AldeloInfileFel.Domain;
+using AldeloInfileFel.Services;
 using Dapper;
 
 namespace AldeloInfileFel.Repositories
@@ -18,18 +19,48 @@ namespace AldeloInfileFel.Repositories
             "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
             " WHERE OrderTransactions.OrderID = @Id";
 
+        private const string TipInformation = "SELECT OrderID, AmountPaid, EmployeeComp " +
+            " FROM OrderPayments " +
+            " WHERE OrderID = @Id";
+
+        private readonly Configuration configuration;
+        public OrderRepository()
+        {
+            this.configuration = ConfigurationService.LoadConfiguration();
+        }
+
         public IList<OrderDetail> GetOrderDetails(long orderId)
         {
             var details = new List<OrderDetail>();
-
-            var connectionString = Environment.GetEnvironmentVariable("ALDELO_DB_CONNECTION_STRING");
-            using (IDbConnection db = new OleDbConnection(connectionString))
+            using (IDbConnection db = new OleDbConnection(configuration.AldeloDbConnectionString))
             {
                 details = db.Query<OrderDetail>(OrderInformationQuery, new { Id = orderId })
                     .ToList();
             }
 
             return details;
+        }
+
+        public OrderPayment GetOrderPayment(long orderId)
+        {
+            OrderPayment orderPayment = null;
+            using (IDbConnection db = new OleDbConnection(configuration.AldeloDbConnectionString))
+            {
+                orderPayment = db.QueryFirstOrDefault<OrderPayment>(TipInformation, new { Id = orderId });
+            }
+
+            return orderPayment;
+        }
+
+        public double GetTipAmount(long orderId)
+        {
+            var tip = 0.00;
+            using (IDbConnection db = new OleDbConnection(configuration.AldeloDbConnectionString))
+            {
+                tip = db.QuerySingleOrDefault<double>(configuration.TipAmountQuery, new { Id = orderId });
+            }
+
+            return tip;
         }
     }
 }

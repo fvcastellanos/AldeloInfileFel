@@ -8,11 +8,14 @@ namespace AldeloInfileFel.Services
 {
     public class InvoiceService
     {
-        private OrderRepository _orderRepository;
+        private const string DownStatus = "DOWN";
+        private readonly OrderRepository _orderRepository;
+        private readonly Configuration _configuration;
 
         public InvoiceService(OrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
+            _configuration = ConfigurationService.LoadConfiguration();
         }
 
         public InvoiceGenerationResponse GenerateInvoice(long orderId, string taxId, string name, string email)
@@ -20,7 +23,9 @@ namespace AldeloInfileFel.Services
             try
             {
                 var details = _orderRepository.GetOrderDetails(orderId);
-                var request = BuildRequest(orderId, taxId, name, email, details);
+                var tipAmount = _orderRepository.GetTipAmount(orderId);
+
+                var request = BuildRequest(orderId, taxId, name, email, details, tipAmount);
 
                 return AldeloFelClient.GenerateInvoiceRequest(request);
             } 
@@ -30,7 +35,21 @@ namespace AldeloInfileFel.Services
             }
         }
 
-        private InvoiceGenerationRequest BuildRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details)
+        public ApiStatus GetApiStatus()
+        {
+            try
+            {
+                return AldeloFelClient.GetApiFelStatus();
+            }
+            catch 
+            {
+                return BuildApiStatusErrorResponse();
+            }
+        }
+
+        // ---------------------------------------------------------------------------------------------------------
+
+        private InvoiceGenerationRequest BuildRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details, double tipAmount)
         {
             return new InvoiceGenerationRequest()
             {
@@ -38,11 +57,11 @@ namespace AldeloInfileFel.Services
                 TaxId = taxId,
                 Name = name,
                 Email = email,
-                Details = BuildItemDetails(details)
+                Details = BuildItemDetails(details, tipAmount)
             };
         }
 
-        private IEnumerable<ItemDetail> BuildItemDetails(IEnumerable<OrderDetail> details)
+        private IEnumerable<ItemDetail> BuildItemDetails(IEnumerable<OrderDetail> details, double tipAmount)
         {
             var items = new List<ItemDetail>();
 
@@ -59,6 +78,8 @@ namespace AldeloInfileFel.Services
                 items.Add(item);
             }
 
+            AddTipToOrder(items, tipAmount);
+
             return items;
         }
 
@@ -70,6 +91,37 @@ namespace AldeloInfileFel.Services
                 Errors = new List<string>()
                 {
                     { exception.Message }
+                }
+            };
+        }
+
+        private void AddTipToOrder(IList<ItemDetail> items, double tipAmount)
+        {
+            items.Add(new ItemDetail()
+            {
+                Quantity = 1,
+                UnitPrice = tipAmount,
+                ItemText = _configuration.TipDescription,
+                DiscountAmount = 0
+            });
+        }
+
+        private ApiStatus BuildApiStatusErrorResponse()
+        {
+            return new ApiStatus()
+            {
+                Status = DownStatus,
+                Components = new StatusComponents()
+                {
+                    InFile = new InFileStatus()
+                    {
+                        Status = DownStatus,
+                        Details = new InfileDetails()
+                        {
+                            Signature = DownStatus,
+                            Certificate = DownStatus
+                        }
+                    }
                 }
             };
         }
