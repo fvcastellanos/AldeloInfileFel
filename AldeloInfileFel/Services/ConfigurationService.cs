@@ -9,7 +9,7 @@ namespace AldeloInfileFel.Services
     {
         public static Configuration LoadConfiguration()
         {
-            var configurationFile = Environment.GetEnvironmentVariable("ADELO_FEL_CONFIGURATION_APP_FILE");
+            var configurationFile = Environment.GetEnvironmentVariable("ALDELO_FEL_CONFIGURATION_APP_FILE");
             var configuration = File.ReadAllText(configurationFile);
 
             return JsonConvert.DeserializeObject<Configuration>(configuration);
