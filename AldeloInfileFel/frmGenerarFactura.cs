@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CefSharp.WinForms;
+using CefSharp;
 
 namespace AldeloInfileFel
 {
@@ -177,6 +178,12 @@ namespace AldeloInfileFel
         {
             var info = new frmInfo();
             info.ShowDialog();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            _browser.PrintToPdfAsync(@"~/Desktop/foo.pdf");
+            //_browser.Print();
         }
     }
 }

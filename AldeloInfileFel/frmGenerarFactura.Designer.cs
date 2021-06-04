@@ -44,15 +44,16 @@ namespace AldeloInfileFel
             this.edOrden = new System.Windows.Forms.NumericUpDown();
             this.pnBrowser = new System.Windows.Forms.Panel();
             this.gbFelStatus = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lbApiStatus = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbSignature = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbCertificate = new System.Windows.Forms.Label();
-            this.tmApiStatus = new System.Windows.Forms.Timer(this.components);
-            this.btnStatus = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
+            this.btnStatus = new System.Windows.Forms.Button();
+            this.lbCertificate = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbSignature = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbApiStatus = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tmApiStatus = new System.Windows.Forms.Timer(this.components);
+            this.btnImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.edOrden)).BeginInit();
             this.gbFelStatus.SuspendLayout();
             this.SuspendLayout();
@@ -142,7 +143,7 @@ namespace AldeloInfileFel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(501, 114);
+            this.btnCancelar.Location = new System.Drawing.Point(502, 97);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(164, 39);
             this.btnCancelar.TabIndex = 50;
@@ -198,67 +199,15 @@ namespace AldeloInfileFel
             this.gbFelStatus.TabStop = false;
             this.gbFelStatus.Text = "Estado FEL";
             // 
-            // label5
+            // btnInfo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "API Fel:";
-            // 
-            // lbApiStatus
-            // 
-            this.lbApiStatus.AutoSize = true;
-            this.lbApiStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbApiStatus.Location = new System.Drawing.Point(63, 16);
-            this.lbApiStatus.Name = "lbApiStatus";
-            this.lbApiStatus.Size = new System.Drawing.Size(22, 13);
-            this.lbApiStatus.TabIndex = 1;
-            this.lbApiStatus.Text = "UP";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(114, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Firma InFile:";
-            // 
-            // lbSignature
-            // 
-            this.lbSignature.AutoSize = true;
-            this.lbSignature.Location = new System.Drawing.Point(183, 16);
-            this.lbSignature.Name = "lbSignature";
-            this.lbSignature.Size = new System.Drawing.Size(22, 13);
-            this.lbSignature.TabIndex = 3;
-            this.lbSignature.Text = "UP";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(223, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Certificación InFile:";
-            // 
-            // lbCertificate
-            // 
-            this.lbCertificate.AutoSize = true;
-            this.lbCertificate.Location = new System.Drawing.Point(318, 16);
-            this.lbCertificate.Name = "lbCertificate";
-            this.lbCertificate.Size = new System.Drawing.Size(22, 13);
-            this.lbCertificate.TabIndex = 5;
-            this.lbCertificate.Text = "UP";
-            // 
-            // tmApiStatus
-            // 
-            this.tmApiStatus.Enabled = true;
-            this.tmApiStatus.Interval = 300000;
-            this.tmApiStatus.Tag = "";
-            this.tmApiStatus.Tick += new System.EventHandler(this.tmApiStatus_Tick);
+            this.btnInfo.Location = new System.Drawing.Point(578, 11);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(75, 23);
+            this.btnInfo.TabIndex = 7;
+            this.btnInfo.Text = "Info";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnStatus
             // 
@@ -270,15 +219,80 @@ namespace AldeloInfileFel
             this.btnStatus.UseVisualStyleBackColor = true;
             this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
             // 
-            // btnInfo
+            // lbCertificate
             // 
-            this.btnInfo.Location = new System.Drawing.Point(578, 11);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(75, 23);
-            this.btnInfo.TabIndex = 7;
-            this.btnInfo.Text = "Info";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            this.lbCertificate.AutoSize = true;
+            this.lbCertificate.Location = new System.Drawing.Point(318, 16);
+            this.lbCertificate.Name = "lbCertificate";
+            this.lbCertificate.Size = new System.Drawing.Size(22, 13);
+            this.lbCertificate.TabIndex = 5;
+            this.lbCertificate.Text = "UP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(223, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Certificación InFile:";
+            // 
+            // lbSignature
+            // 
+            this.lbSignature.AutoSize = true;
+            this.lbSignature.Location = new System.Drawing.Point(183, 16);
+            this.lbSignature.Name = "lbSignature";
+            this.lbSignature.Size = new System.Drawing.Size(22, 13);
+            this.lbSignature.TabIndex = 3;
+            this.lbSignature.Text = "UP";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(114, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Firma InFile:";
+            // 
+            // lbApiStatus
+            // 
+            this.lbApiStatus.AutoSize = true;
+            this.lbApiStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lbApiStatus.Location = new System.Drawing.Point(63, 16);
+            this.lbApiStatus.Name = "lbApiStatus";
+            this.lbApiStatus.Size = new System.Drawing.Size(22, 13);
+            this.lbApiStatus.TabIndex = 1;
+            this.lbApiStatus.Text = "UP";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "API Fel:";
+            // 
+            // tmApiStatus
+            // 
+            this.tmApiStatus.Enabled = true;
+            this.tmApiStatus.Interval = 300000;
+            this.tmApiStatus.Tag = "";
+            this.tmApiStatus.Tick += new System.EventHandler(this.tmApiStatus_Tick);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Location = new System.Drawing.Point(502, 142);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(164, 39);
+            this.btnImprimir.TabIndex = 64;
+            this.btnImprimir.Text = "Imprimir Factura";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Visible = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // frmInvoice
             // 
@@ -286,6 +300,7 @@ namespace AldeloInfileFel
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(693, 672);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
             this.Controls.Add(this.pnBrowser);
             this.Controls.Add(this.edOrden);
@@ -339,6 +354,7 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Timer tmApiStatus;
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }
 
