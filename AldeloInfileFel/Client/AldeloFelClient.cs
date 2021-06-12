@@ -48,6 +48,19 @@ namespace AldeloInfileFel.Client
             return JsonConvert.DeserializeObject<ApiStatus>(responsePayload);
         }
 
+        public static string GetApiInfo()
+        {
+            var infoUrl = _configuration.FelApiInfo;
+
+            var response = _client.GetAsync(infoUrl);
+
+            return response.Result
+                .EnsureSuccessStatusCode()
+                .Content
+                .ReadAsStringAsync()
+                .Result;
+        }
+
         // ------------------------------------------------------------------------------------------------
 
         private static InvoiceGenerationResponse BuildSuccessResponse(string message)

@@ -83,6 +83,7 @@ namespace AldeloInfileFel
             this.edNit.Name = "edNit";
             this.edNit.Size = new System.Drawing.Size(207, 26);
             this.edNit.TabIndex = 10;
+            this.edNit.Leave += new System.EventHandler(this.edNit_Leave);
             // 
             // edNombre
             // 

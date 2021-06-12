@@ -182,8 +182,17 @@ namespace AldeloInfileFel
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            _browser.PrintToPdfAsync(@"~/Desktop/foo.pdf");
-            //_browser.Print();
+            _browser.Print();
+        }
+
+        private void edNit_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(edNit.Text))
+            {
+                edNit.Text = "CF";
+            }
+
+            edNit.Text = edNit.Text.ToUpper();
         }
     }
 }

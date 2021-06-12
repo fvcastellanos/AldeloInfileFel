@@ -30,15 +30,28 @@ namespace AldeloInfileFel
         private void InitializeComponent()
         {
             this.pnBrowser = new System.Windows.Forms.Panel();
+            this.edInfo = new System.Windows.Forms.TextBox();
+            this.pnBrowser.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnBrowser
             // 
+            this.pnBrowser.Controls.Add(this.edInfo);
             this.pnBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnBrowser.Location = new System.Drawing.Point(0, 0);
             this.pnBrowser.Name = "pnBrowser";
             this.pnBrowser.Size = new System.Drawing.Size(507, 353);
             this.pnBrowser.TabIndex = 0;
+            // 
+            // edInfo
+            // 
+            this.edInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.edInfo.Location = new System.Drawing.Point(0, 0);
+            this.edInfo.Multiline = true;
+            this.edInfo.Name = "edInfo";
+            this.edInfo.ReadOnly = true;
+            this.edInfo.Size = new System.Drawing.Size(507, 353);
+            this.edInfo.TabIndex = 0;
             // 
             // frmInfo
             // 
@@ -47,9 +60,12 @@ namespace AldeloInfileFel
             this.ClientSize = new System.Drawing.Size(507, 353);
             this.Controls.Add(this.pnBrowser);
             this.Name = "frmInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Información de Aplicación";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInfo_Load);
+            this.pnBrowser.ResumeLayout(false);
+            this.pnBrowser.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -57,5 +73,6 @@ namespace AldeloInfileFel
         #endregion
 
         private System.Windows.Forms.Panel pnBrowser;
+        private System.Windows.Forms.TextBox edInfo;
     }
 }

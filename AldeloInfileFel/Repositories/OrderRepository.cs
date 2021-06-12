@@ -11,7 +11,6 @@ namespace AldeloInfileFel.Repositories
 {
     public class OrderRepository
     {
-        /*
         private const string OrderInformationQuery = "SELECT OrderTransactions.OrderID, OrderTransactions.MenuItemID as ItemID, " +
             "  OrderTransactions.MenuItemUnitPrice as UnitPrice, OrderTransactions.Quantity, " +
             "  OrderTransactions.DiscountAmount, OrderTransactions.DiscountTaxable," +
@@ -19,15 +18,6 @@ namespace AldeloInfileFel.Repositories
             " FROM MenuItems " +
             "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
             " WHERE OrderTransactions.OrderID = @Id";
-        */
-        private const string OrderInformationQuery = "SELECT OrderTransactions.OrderID, OrderTransactions.MenuItemID as ItemID, " +
-            "  OrderTransactions.ExtendedPrice as UnitPrice, OrderTransactions.Quantity, " +
-            "  (OrderTransactions.DiscountAmount / 100) as DiscountAmount, OrderTransactions.DiscountTaxable," +
-            "  MenuItems.MenuItemText as ItemText, MenuItems.MenuItemDescription as ItemDescription" +
-            " FROM MenuItems " +
-            "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
-            " WHERE OrderTransactions.TransactionStatus = '1' AND OrderTransactions.OrderID = @Id";
-
 
         private const string TipInformation = "SELECT OrderID, AmountPaid, EmployeeComp " +
             " FROM OrderPayments " +
