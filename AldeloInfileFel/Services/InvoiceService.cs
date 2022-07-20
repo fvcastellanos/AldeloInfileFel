@@ -47,6 +47,18 @@ namespace AldeloInfileFel.Services
             }
         }
 
+        public string QueryTaxId(string taxId)
+        {
+            try
+            {
+                return InfileClient.QueryTaxId(taxId);
+
+            } catch (Exception exception)
+            {
+                return exception.Message;
+            }
+        }
+
         // ---------------------------------------------------------------------------------------------------------
 
         private InvoiceGenerationRequest BuildRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details, double tipAmount)

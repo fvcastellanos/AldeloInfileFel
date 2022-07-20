@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AldeloInfileFel.Domain
+﻿namespace AldeloInfileFel.Domain
 {
     public class Configuration
     {
@@ -15,5 +9,8 @@ namespace AldeloInfileFel.Domain
         public string TipDescription { get; set; }
         public string PreviewUrl { get; set; }
         public string TipAmountQuery { get; set; }
+        public string InfileTaxIdQueryUrl { get; set; }
+        public string InfileTenantKey { get; set; }
+        public string InfileTenantCode { get; set; }
     }
 }

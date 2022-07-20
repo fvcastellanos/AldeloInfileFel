@@ -65,7 +65,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\AldeloFelClient.cs" />
+    <Compile Include="Client\InfileClient.cs" />
     <Compile Include="Domain\Configuration.cs" />
     <Compile Include="Domain\InfileDetails.cs" />
     <Compile Include="Domain\InFileStatus.cs" />
@@ -161,6 +162,8 @@
     <Compile Include="Domain\OrderDetail.cs" />
     <Compile Include="Domain\OrderPayment.cs" />
     <Compile Include="Domain\ApiStatus.cs" />
+    <Compile Include="Domain\QueryTaxIdRequest.cs" />
+    <Compile Include="Domain\QueryTaxIdResponse.cs" />
     <Compile Include="Domain\StatusComponents.cs" />
     <Compile Include="frmGenerarFactura.cs">
       <SubType>Form</SubType>

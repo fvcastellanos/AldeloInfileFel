@@ -298,8 +298,8 @@ namespace AldeloInfileFel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(693, 672);
+            this.ControlBox = false;
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
             this.Controls.Add(this.pnBrowser);
@@ -316,6 +316,8 @@ namespace AldeloInfileFel
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmInvoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar Factura";
