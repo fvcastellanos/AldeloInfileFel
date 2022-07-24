@@ -69,11 +69,12 @@ namespace AldeloInfileFel.Services
                 TaxId = taxId,
                 Name = name,
                 Email = email,
-                Details = BuildItemDetails(details, tipAmount)
+                TipAmount = tipAmount,
+                Details = BuildItemDetails(details)
             };
         }
 
-        private IEnumerable<ItemDetail> BuildItemDetails(IEnumerable<OrderDetail> details, double tipAmount)
+        private IEnumerable<ItemDetail> BuildItemDetails(IEnumerable<OrderDetail> details)
         {
             var items = new List<ItemDetail>();
 
@@ -90,8 +91,6 @@ namespace AldeloInfileFel.Services
                 items.Add(item);
             }
 
-            AddTipToOrder(items, tipAmount);
-
             return items;
         }
 
@@ -105,17 +104,6 @@ namespace AldeloInfileFel.Services
                     { exception.Message }
                 }
             };
-        }
-
-        private void AddTipToOrder(IList<ItemDetail> items, double tipAmount)
-        {
-            items.Add(new ItemDetail()
-            {
-                Quantity = 1,
-                UnitPrice = tipAmount,
-                ItemText = _configuration.TipDescription,
-                DiscountAmount = 0
-            });
         }
 
         private ApiStatus BuildApiStatusErrorResponse()
