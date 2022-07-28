@@ -20,18 +20,23 @@ namespace AldeloInfileFel.Repositories
             "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
             " WHERE OrderTransactions.OrderID = @Id";
         */
+
+        /*
         private const string OrderInformationQuery = "SELECT OrderTransactions.OrderID, OrderTransactions.MenuItemID as ItemID, " +
             "  OrderTransactions.ExtendedPrice as UnitPrice, OrderTransactions.Quantity, " +
             "  (OrderTransactions.DiscountAmount / 100) as DiscountAmount, OrderTransactions.DiscountTaxable," +
             "  MenuItems.MenuItemText as ItemText, MenuItems.MenuItemDescription as ItemDescription" +
             " FROM MenuItems " +
             "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
+            " WHERE OrderTransactions.TransactionStatus = '1' AND OrderTransactions.OrderID = @Id"; */
+
+        private const string OrderInformationQuery = "SELECT OrderTransactions.OrderID, OrderTransactions.MenuItemID as ItemID, " +
+            "  OrderTransactions.MenuItemUnitPrice as UnitPrice, OrderTransactions.Quantity as Quantity, " +
+            "  OrderTransactions.DiscountAmountUsed as DiscountAmount, " +
+            "  MenuItems.MenuItemText as ItemText, MenuItems.MenuItemDescription as ItemDescription" +
+            " FROM MenuItems " +
+            "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
             " WHERE OrderTransactions.TransactionStatus = '1' AND OrderTransactions.OrderID = @Id";
-
-
-        private const string TipInformation = "SELECT OrderID, AmountPaid, EmployeeComp " +
-            " FROM OrderPayments " +
-            " WHERE OrderID = @Id";
 
         private readonly Configuration configuration;
         public OrderRepository()
@@ -49,17 +54,6 @@ namespace AldeloInfileFel.Repositories
             }
 
             return details;
-        }
-
-        public OrderPayment GetOrderPayment(long orderId)
-        {
-            OrderPayment orderPayment = null;
-            using (IDbConnection db = new OleDbConnection(configuration.AldeloDbConnectionString))
-            {
-                orderPayment = db.QueryFirstOrDefault<OrderPayment>(TipInformation, new { Id = orderId });
-            }
-
-            return orderPayment;
         }
 
         public double GetTipAmount(long orderId)
