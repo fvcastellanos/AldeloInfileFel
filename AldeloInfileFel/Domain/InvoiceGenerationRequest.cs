@@ -18,6 +18,9 @@ namespace AldeloInfileFel.Domain
         [JsonProperty(PropertyName = "email")]
         public string Email { get; set; }
 
+        [JsonProperty(PropertyName = "tipAmount")]
+        public double TipAmount { get; set; }
+
         [JsonProperty(PropertyName = "details")]
         public IEnumerable<ItemDetail> Details { get; set; }
     }

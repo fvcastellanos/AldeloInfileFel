@@ -48,6 +48,13 @@ namespace AldeloInfileFel
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
+            
+            if (string.IsNullOrEmpty(edNit.Text))
+            {
+                MessageBox.Show("Debe ingresar un número de NIT");
+                edNit.Focus();
+                return;
+            }
 
             if (edOrden.Value == 0)
             {
@@ -56,7 +63,11 @@ namespace AldeloInfileFel
                 return;
             }
 
+            btnGenerar.Enabled = false;
+            edNombre.Text = "";
             edResultado.Text = "";
+
+            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
 
             var noOrden = long.Parse(edOrden.Text);
             var result = _invoiceService.GenerateInvoice(noOrden, edNit.Text, edNombre.Text, edCorreo.Text);
@@ -64,10 +75,13 @@ namespace AldeloInfileFel
             if (result.Success)
             {
                 PresentarResultado(result.InvoiceInformation);
+                btnGenerar.Enabled = true;
                 return;
             }
 
             PresentarError(result.Errors);
+
+            btnGenerar.Enabled = true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
