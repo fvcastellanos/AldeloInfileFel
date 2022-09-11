@@ -199,5 +199,10 @@ namespace AldeloInfileFel
         {
             _browser.Print();
         }
+
+        private void edNit_Leave(object sender, EventArgs e)
+        {
+            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+        }
     }
 }
