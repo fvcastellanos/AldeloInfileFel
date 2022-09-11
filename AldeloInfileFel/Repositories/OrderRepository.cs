@@ -38,6 +38,11 @@ namespace AldeloInfileFel.Repositories
             "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
             " WHERE OrderTransactions.TransactionStatus = '1' AND OrderTransactions.OrderID = @Id";
 
+
+        private const string TipInformation = "SELECT OrderID, AmountPaid, EmployeeComp " +
+            " FROM OrderPayments " +
+            " WHERE OrderID = @Id";
+
         private readonly Configuration configuration;
         public OrderRepository()
         {
@@ -54,6 +59,17 @@ namespace AldeloInfileFel.Repositories
             }
 
             return details;
+        }
+
+        public OrderPayment GetOrderPayment(long orderId)
+        {
+            OrderPayment orderPayment = null;
+            using (IDbConnection db = new OleDbConnection(configuration.AldeloDbConnectionString))
+            {
+                orderPayment = db.QueryFirstOrDefault<OrderPayment>(TipInformation, new { Id = orderId });
+            }
+
+            return orderPayment;
         }
 
         public double GetTipAmount(long orderId)

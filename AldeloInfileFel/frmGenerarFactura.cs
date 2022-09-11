@@ -23,6 +23,7 @@ namespace AldeloInfileFel
             InitializeComponent();
 
             _browser = new ChromiumWebBrowser("about:blank");
+            _browser.Dock = DockStyle.Fill;
             pnBrowser.Controls.Add(_browser);
 
             _invoiceService = new InvoiceService(new OrderRepository());
@@ -196,8 +197,7 @@ namespace AldeloInfileFel
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            _browser.PrintToPdfAsync(@"~/Desktop/foo.pdf");
-            //_browser.Print();
+            _browser.Print();
         }
     }
 }
