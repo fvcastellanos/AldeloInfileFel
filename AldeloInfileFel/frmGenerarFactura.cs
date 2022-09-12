@@ -64,10 +64,13 @@ namespace AldeloInfileFel
             }
 
             btnGenerar.Enabled = false;
-            edNombre.Text = "";
             edResultado.Text = "";
 
-            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+            if (string.IsNullOrEmpty(edNombre.Text))
+            {
+                edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+
+            }
 
             var noOrden = long.Parse(edOrden.Text);
             var result = _invoiceService.GenerateInvoice(noOrden, edNit.Text, edNombre.Text, edCorreo.Text);
@@ -142,6 +145,7 @@ namespace AldeloInfileFel
         {
             var url = _configuration.PreviewUrl.Replace("#value", UUID);
             _browser.Load(url);
+            _browser.Print();
         }
 
         private void frmInvoice_Load(object sender, EventArgs e)
@@ -189,20 +193,14 @@ namespace AldeloInfileFel
             ShowApiStatus();
         }
 
-        private void btnInfo_Click(object sender, EventArgs e)
+        private void edNit_Leave(object sender, EventArgs e)
         {
-            var info = new frmInfo();
-            info.ShowDialog();
+            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             _browser.Print();
-        }
-
-        private void edNit_Leave(object sender, EventArgs e)
-        {
-            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
         }
     }
 }

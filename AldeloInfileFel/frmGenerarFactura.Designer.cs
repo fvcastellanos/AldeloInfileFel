@@ -44,7 +44,6 @@ namespace AldeloInfileFel
             this.edOrden = new System.Windows.Forms.NumericUpDown();
             this.pnBrowser = new System.Windows.Forms.Panel();
             this.gbFelStatus = new System.Windows.Forms.GroupBox();
-            this.btnInfo = new System.Windows.Forms.Button();
             this.btnStatus = new System.Windows.Forms.Button();
             this.lbCertificate = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -132,9 +131,9 @@ namespace AldeloInfileFel
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(501, 52);
+            this.btnGenerar.Location = new System.Drawing.Point(502, 52);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(164, 39);
+            this.btnGenerar.Size = new System.Drawing.Size(164, 71);
             this.btnGenerar.TabIndex = 40;
             this.btnGenerar.Text = "Generar Factura";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -144,9 +143,9 @@ namespace AldeloInfileFel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(502, 97);
+            this.btnCancelar.Location = new System.Drawing.Point(502, 132);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(164, 39);
+            this.btnCancelar.Size = new System.Drawing.Size(164, 69);
             this.btnCancelar.TabIndex = 50;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -158,7 +157,7 @@ namespace AldeloInfileFel
             this.edResultado.Multiline = true;
             this.edResultado.Name = "edResultado";
             this.edResultado.ReadOnly = true;
-            this.edResultado.Size = new System.Drawing.Size(637, 97);
+            this.edResultado.Size = new System.Drawing.Size(637, 78);
             this.edResultado.TabIndex = 61;
             this.edResultado.TabStop = false;
             // 
@@ -178,14 +177,13 @@ namespace AldeloInfileFel
             // 
             // pnBrowser
             // 
-            this.pnBrowser.Location = new System.Drawing.Point(29, 322);
+            this.pnBrowser.Location = new System.Drawing.Point(28, 344);
             this.pnBrowser.Name = "pnBrowser";
-            this.pnBrowser.Size = new System.Drawing.Size(636, 338);
+            this.pnBrowser.Size = new System.Drawing.Size(638, 216);
             this.pnBrowser.TabIndex = 62;
             // 
             // gbFelStatus
             // 
-            this.gbFelStatus.Controls.Add(this.btnInfo);
             this.gbFelStatus.Controls.Add(this.btnStatus);
             this.gbFelStatus.Controls.Add(this.lbCertificate);
             this.gbFelStatus.Controls.Add(this.label7);
@@ -195,20 +193,10 @@ namespace AldeloInfileFel
             this.gbFelStatus.Controls.Add(this.label5);
             this.gbFelStatus.Location = new System.Drawing.Point(12, 5);
             this.gbFelStatus.Name = "gbFelStatus";
-            this.gbFelStatus.Size = new System.Drawing.Size(669, 44);
+            this.gbFelStatus.Size = new System.Drawing.Size(654, 44);
             this.gbFelStatus.TabIndex = 63;
             this.gbFelStatus.TabStop = false;
             this.gbFelStatus.Text = "Estado FEL";
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.Location = new System.Drawing.Point(578, 11);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(75, 23);
-            this.btnInfo.TabIndex = 7;
-            this.btnInfo.Text = "Info";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnStatus
             // 
@@ -284,21 +272,20 @@ namespace AldeloInfileFel
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(502, 142);
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Location = new System.Drawing.Point(502, 298);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(164, 39);
+            this.btnImprimir.Size = new System.Drawing.Size(164, 40);
             this.btnImprimir.TabIndex = 64;
-            this.btnImprimir.Text = "Imprimir Factura";
+            this.btnImprimir.Text = "Reimprimir Factura";
             this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Visible = false;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 546);
+            this.ClientSize = new System.Drawing.Size(683, 572);
             this.ControlBox = false;
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
@@ -316,7 +303,7 @@ namespace AldeloInfileFel
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInvoice";
@@ -356,7 +343,6 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Timer tmApiStatus;
         private System.Windows.Forms.Button btnStatus;
-        private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.Button btnImprimir;
     }
 }

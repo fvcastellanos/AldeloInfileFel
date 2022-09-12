@@ -158,7 +158,6 @@
     <Compile Include="Domain\InvoiceGenerationRequest.cs" />
     <Compile Include="Domain\InvoiceGenerationResponse.cs" />
     <Compile Include="Domain\ItemDetail.cs" />
-    <Compile Include="Domain\CertificationResult.cs" />
     <Compile Include="Domain\OrderDetail.cs" />
     <Compile Include="Domain\OrderPayment.cs" />
     <Compile Include="Domain\ApiStatus.cs" />
@@ -212,12 +211,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\ApiInformation.cs" />
-    <Compile Include="Domain\FelInformation.cs" />
-    <Compile Include="Domain\GeneratorInformation.cs" />
-    <Compile Include="Domain\InvoiceGeneration.cs" />
     <Compile Include="Domain\InvoiceInformation.cs" />
-    <Compile Include="Domain\Phrase.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

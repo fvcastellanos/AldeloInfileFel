@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AldeloInfileFel.Client;
 using AldeloInfileFel.Domain;
 using AldeloInfileFel.Repositories;
@@ -63,6 +64,22 @@ namespace AldeloInfileFel.Services
 
         private InvoiceGenerationRequest BuildRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details, double tipAmount)
         {
+            var isItemizedTip = IsItemizedTip();
+
+            if (isItemizedTip)
+            {
+                var detailsWithTip = details.Append(BuildTipAsOrderDetail(tipAmount));
+
+                return new InvoiceGenerationRequest()
+                {
+                    OrderId = orderId,
+                    TaxId = taxId,
+                    Name = name,
+                    Email = email,
+                    Details = BuildItemDetails(detailsWithTip)
+                };
+            }
+
             return new InvoiceGenerationRequest()
             {
                 OrderId = orderId,
@@ -76,11 +93,9 @@ namespace AldeloInfileFel.Services
 
         private IEnumerable<ItemDetail> BuildItemDetails(IEnumerable<OrderDetail> details)
         {
-            var items = new List<ItemDetail>();
-
-            foreach (var detail in details)
+            return details.Select(detail =>
             {
-                var item = new ItemDetail()
+                return new ItemDetail()
                 {
                     Quantity = detail.Quantity,
                     UnitPrice = detail.UnitPrice,
@@ -88,10 +103,18 @@ namespace AldeloInfileFel.Services
                     DiscountAmount = detail.DiscountAmount
                 };
 
-                items.Add(item);
-            }
+            }).ToList();
+        }
 
-            return items;
+        private OrderDetail BuildTipAsOrderDetail(double tipAmount)
+        {
+            return new OrderDetail
+            {
+                Quantity = 1,
+                UnitPrice = tipAmount,
+                ItemText = _configuration.TipDescription,
+                DiscountAmount = 0
+            };
         }
 
         private InvoiceGenerationResponse BuildErrorResponse(Exception exception)
@@ -124,6 +147,17 @@ namespace AldeloInfileFel.Services
                     }
                 }
             };
+        }
+
+        private bool IsItemizedTip()
+        {
+            if ((string.IsNullOrEmpty(_configuration.TipProcessingType))
+                    || _configuration.TipProcessingType.Equals("Amend", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
