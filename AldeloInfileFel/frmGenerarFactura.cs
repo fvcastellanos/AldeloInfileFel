@@ -2,12 +2,15 @@
 using AldeloInfileFel.Repositories;
 using AldeloInfileFel.Services;
 using System;
+using System.IO;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CefSharp.WinForms;
 using CefSharp;
+using Spire.Pdf;
 
 namespace AldeloInfileFel
 {
@@ -114,7 +117,7 @@ namespace AldeloInfileFel
             builder.AppendLine("Origen: " + invoiceInformation.Origin);
 
             edResultado.Text = builder.ToString();
-            CargarFactura(invoiceInformation.UUID);
+            ImprimirFactura(invoiceInformation.UUID);
         }
 
         private void ObtenerOrden()
@@ -141,11 +144,19 @@ namespace AldeloInfileFel
             }
         }
 
-        private void CargarFactura(string UUID)
+        private void ImprimirFactura(string UUID)
         {
             var url = _configuration.PreviewUrl.Replace("#value", UUID);
+            var tempFile = Path.GetTempFileName();
+
             _browser.Load(url);
-            _browser.Print();
+
+            var webClient = new WebClient();
+            webClient.DownloadFile(url, tempFile);
+
+            var pdfDocument = new PdfDocument();
+            pdfDocument.LoadFromFile(tempFile);
+            pdfDocument.Print();
         }
 
         private void frmInvoice_Load(object sender, EventArgs e)

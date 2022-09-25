@@ -39,7 +39,6 @@ namespace AldeloInfileFel
             this.label4 = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnGenerar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.edResultado = new System.Windows.Forms.TextBox();
             this.edOrden = new System.Windows.Forms.NumericUpDown();
             this.pnBrowser = new System.Windows.Forms.Panel();
@@ -53,6 +52,7 @@ namespace AldeloInfileFel
             this.label5 = new System.Windows.Forms.Label();
             this.tmApiStatus = new System.Windows.Forms.Timer(this.components);
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.edOrden)).BeginInit();
             this.gbFelStatus.SuspendLayout();
             this.SuspendLayout();
@@ -133,23 +133,11 @@ namespace AldeloInfileFel
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.Location = new System.Drawing.Point(502, 52);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(164, 71);
+            this.btnGenerar.Size = new System.Drawing.Size(164, 106);
             this.btnGenerar.TabIndex = 40;
             this.btnGenerar.Text = "Generar Factura";
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(502, 132);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(164, 69);
-            this.btnCancelar.TabIndex = 50;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // edResultado
             // 
@@ -158,7 +146,7 @@ namespace AldeloInfileFel
             this.edResultado.Name = "edResultado";
             this.edResultado.ReadOnly = true;
             this.edResultado.Size = new System.Drawing.Size(637, 78);
-            this.edResultado.TabIndex = 61;
+            this.edResultado.TabIndex = 110;
             this.edResultado.TabStop = false;
             // 
             // edOrden
@@ -180,7 +168,7 @@ namespace AldeloInfileFel
             this.pnBrowser.Location = new System.Drawing.Point(28, 344);
             this.pnBrowser.Name = "pnBrowser";
             this.pnBrowser.Size = new System.Drawing.Size(638, 216);
-            this.pnBrowser.TabIndex = 62;
+            this.pnBrowser.TabIndex = 120;
             // 
             // gbFelStatus
             // 
@@ -203,7 +191,7 @@ namespace AldeloInfileFel
             this.btnStatus.Location = new System.Drawing.Point(367, 11);
             this.btnStatus.Name = "btnStatus";
             this.btnStatus.Size = new System.Drawing.Size(75, 23);
-            this.btnStatus.TabIndex = 6;
+            this.btnStatus.TabIndex = 100;
             this.btnStatus.Text = "Estado";
             this.btnStatus.UseVisualStyleBackColor = true;
             this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
@@ -276,10 +264,22 @@ namespace AldeloInfileFel
             this.btnImprimir.Location = new System.Drawing.Point(502, 298);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(164, 40);
-            this.btnImprimir.TabIndex = 64;
+            this.btnImprimir.TabIndex = 50;
             this.btnImprimir.Text = "Reimprimir Factura";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(29, 298);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(164, 40);
+            this.btnCancelar.TabIndex = 70;
+            this.btnCancelar.Text = "Cerrar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmInvoice
             // 
@@ -287,12 +287,12 @@ namespace AldeloInfileFel
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 572);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
             this.Controls.Add(this.pnBrowser);
             this.Controls.Add(this.edOrden);
             this.Controls.Add(this.edResultado);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label4);
@@ -330,7 +330,6 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnGenerar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox edResultado;
         private System.Windows.Forms.NumericUpDown edOrden;
         private System.Windows.Forms.Panel pnBrowser;
@@ -344,6 +343,7 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Timer tmApiStatus;
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
 
