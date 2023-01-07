@@ -2,12 +2,15 @@
 using AldeloInfileFel.Repositories;
 using AldeloInfileFel.Services;
 using System;
+using System.IO;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CefSharp.WinForms;
 using CefSharp;
+using Spire.Pdf;
 
 namespace AldeloInfileFel
 {
@@ -64,10 +67,13 @@ namespace AldeloInfileFel
             }
 
             btnGenerar.Enabled = false;
-            edNombre.Text = "";
             edResultado.Text = "";
 
-            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+            if (string.IsNullOrEmpty(edNombre.Text))
+            {
+                edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+
+            }
 
             var noOrden = long.Parse(edOrden.Text);
             var result = _invoiceService.GenerateInvoice(noOrden, edNit.Text, edNombre.Text, edCorreo.Text);
@@ -111,7 +117,7 @@ namespace AldeloInfileFel
             builder.AppendLine("Origen: " + invoiceInformation.Origin);
 
             edResultado.Text = builder.ToString();
-            CargarFactura(invoiceInformation.UUID);
+            ImprimirFactura(invoiceInformation.UUID);
         }
 
         private void ObtenerOrden()
@@ -138,10 +144,19 @@ namespace AldeloInfileFel
             }
         }
 
-        private void CargarFactura(string UUID)
+        private void ImprimirFactura(string UUID)
         {
             var url = _configuration.PreviewUrl.Replace("#value", UUID);
+            var tempFile = Path.GetTempFileName();
+
             _browser.Load(url);
+
+            var webClient = new WebClient();
+            webClient.DownloadFile(url, tempFile);
+
+            var pdfDocument = new PdfDocument();
+            pdfDocument.LoadFromFile(tempFile);
+            pdfDocument.Print();
         }
 
         private void frmInvoice_Load(object sender, EventArgs e)
@@ -189,10 +204,9 @@ namespace AldeloInfileFel
             ShowApiStatus();
         }
 
-        private void btnInfo_Click(object sender, EventArgs e)
+        private void edNit_Leave(object sender, EventArgs e)
         {
-            var info = new frmInfo();
-            info.ShowDialog();
+            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)

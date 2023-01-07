@@ -42,25 +42,5 @@ namespace AldeloInfileFel.Client
 
             return "";
         }
-
-        private static InvoiceGenerationResponse BuildSuccessResponse(string message)
-        {
-            return new InvoiceGenerationResponse()
-            {
-                Success = true,
-                InvoiceInformation = JsonConvert.DeserializeObject<InvoiceInformation>(message),
-            };
-        }
-
-        private static InvoiceGenerationResponse BuildErrorResponse(string message)
-        {
-            var errorResponse = JsonConvert.DeserializeObject<InvoiceGenerationErrorResponse>(message);
-            return new InvoiceGenerationResponse()
-            {
-                Success = false,
-                Errors = errorResponse.Errors
-            };
-        }
-
     }
 }
