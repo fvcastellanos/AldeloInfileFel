@@ -42,5 +42,68 @@ namespace AldeloInfileFel.Client
 
             return "";
         }
+
+        public static QueryIdLoginResponse QueryIdLogin()
+        {
+            var apiUrl = _configuration.InfileIdQueryLoginUrl;
+
+            var prefix = new StringContent(_configuration.InfileTenantCode, Encoding.UTF8);
+            var key = new StringContent(_configuration.InfileTenantKey, Encoding.UTF8);
+
+            var content = new MultipartFormDataContent
+            {
+                { prefix, "prefijo" },
+                { key, "llave" }
+            };
+
+            var response = _client.PostAsync(apiUrl, content)
+                .Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responsePayload = response.Content
+                    .ReadAsStringAsync()
+                    .Result;
+
+                var responseObject = JsonConvert.DeserializeObject<QueryIdLoginResponse>(responsePayload);
+
+                return responseObject;
+            }
+
+            return null;
+        }
+
+        public static IdQueryResponse IdQuery(string apiToken, string id)
+        {
+            var apiUrl = _configuration.InfileIdQueryUrl;
+
+            var idQuery = new StringContent(id, Encoding.UTF8);
+
+            var content = new MultipartFormDataContent
+            {
+                { idQuery, "cui" }
+            };
+
+            var bearerToken = "Bearer " + apiToken;
+            _client.DefaultRequestHeaders.Add("Authorization", bearerToken);
+
+            var response = _client.PostAsync(apiUrl, content)
+                .Result;
+
+            _client.DefaultRequestHeaders.Remove("Authorization");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responsePayload = response.Content
+                    .ReadAsStringAsync()
+                    .Result;
+
+                var responseObject = JsonConvert.DeserializeObject<IdQueryResponse>(responsePayload);
+
+                return responseObject;
+            }
+
+            return null;
+        }
     }
 }
