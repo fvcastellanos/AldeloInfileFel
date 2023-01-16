@@ -11,20 +11,30 @@ namespace AldeloInfileFel.Services
     {
         private const string DownStatus = "DOWN";
         private readonly OrderRepository _orderRepository;
+        private readonly TokenService tokenService;
         private readonly Configuration _configuration;
 
-        public InvoiceService(OrderRepository orderRepository)
+        public InvoiceService(OrderRepository orderRepository, TokenService tokenService)
         {
             _orderRepository = orderRepository;
             _configuration = ConfigurationService.LoadConfiguration();
+            this.tokenService = tokenService;
         }
 
-        public InvoiceGenerationResponse GenerateInvoice(long orderId, string taxId, string name, string email)
+        public InvoiceGenerationResponse GenerateInvoice(ConsumerData consumerData)
         {
             try
             {
-                var details = _orderRepository.GetOrderDetails(orderId);
-                var tipAmount = _orderRepository.GetTipAmount(orderId);
+                var details = _orderRepository.GetOrderDetails(consumerData.OrderId);
+                var tipAmount = _orderRepository.GetTipAmount(consumerData.OrderId);
+
+                var invoiceTotal = details.Select(detail => detail.Quantity * detail.UnitPrice)
+                    .Sum();
+
+                if ((invoiceTotal > 2500) && "CF".Equals(consumerData.TaxId, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    throw new Exception("El monto máximo permitido a facturar para un nit CF es de Q. 2,500.00");
+                }
 
                 var barDetails = details.Where(detail => detail.Bar);
                 var restaurantDetails = details.Where(detail => !detail.Bar);
@@ -63,6 +73,31 @@ namespace AldeloInfileFel.Services
             }
         }
 
+        public string QueryId(string id)
+        {
+            try
+            {
+                var token = tokenService.GetToken();
+
+                var response = InfileClient.IdQuery(token, id);
+
+                if ((response == null) || (!response.Result))
+                {
+                    throw new Exception("No es posible consultar el CUI");
+                }
+
+                var idValue = response.Id;
+
+                return idValue.Name;
+
+            }
+            catch (Exception exception)
+            {
+                return exception.Message;
+            }
+        }
+
+
         // ---------------------------------------------------------------------------------------------------------
 
         private GenerationRequest BuildGenerationRequest(long orderId, 
@@ -93,20 +128,22 @@ namespace AldeloInfileFel.Services
 
                 return new InvoiceGenerationRequest()
                 {
-                    OrderId = orderId,
-                    TaxId = taxId,
-                    Name = name,
-                    Email = email,
+                    OrderId = consumerData.OrderId,
+                    TaxId = consumerData.TaxId,
+                    TaxIdType = consumerData.TaxIdType,
+                    Name = consumerData.Name,
+                    Email = consumerData.Email,
                     Details = BuildItemDetails(detailsWithTip)
                 };
             }
 
             return new InvoiceGenerationRequest()
             {
-                OrderId = orderId,
-                TaxId = taxId,
-                Name = name,
-                Email = email,
+                OrderId = consumerData.OrderId,
+                TaxId = consumerData.TaxId,
+                TaxIdType = consumerData.TaxIdType,
+                Name = consumerData.Name,
+                Email = consumerData.Email,
                 TipAmount = tipAmount,
                 Details = BuildItemDetails(details)
             };
@@ -180,5 +217,6 @@ namespace AldeloInfileFel.Services
 
             return true;
         }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using AldeloInfileFel.Domain;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace AldeloInfileFel.Domain
@@ -11,6 +10,9 @@ namespace AldeloInfileFel.Domain
 
         [JsonProperty(PropertyName = "taxId")]
         public string TaxId { get; set; }
+
+        [JsonProperty(PropertyName = "taxIdType")]
+        public string TaxIdType { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

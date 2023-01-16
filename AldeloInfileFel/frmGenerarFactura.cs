@@ -29,7 +29,8 @@ namespace AldeloInfileFel
             _browser.Dock = DockStyle.Fill;
             pnBrowser.Controls.Add(_browser);
 
-            _invoiceService = new InvoiceService(new OrderRepository());
+            var tokenService = new TokenService(new TokenRepository());
+            _invoiceService = new InvoiceService(new OrderRepository(), tokenService);
             _configuration = ConfigurationService.LoadConfiguration();
         }
 
@@ -40,8 +41,9 @@ namespace AldeloInfileFel
 
         private void LimpiarControles()
         {
+            rbCF.Checked = true;
             edOrden.Value = 0;
-            edNit.Text = "";
+            edNit.Text = "CF";
             edNombre.Text = "";
             edCorreo.Text = "";
             edResultado.Text = "";
@@ -51,20 +53,7 @@ namespace AldeloInfileFel
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            
-            if (string.IsNullOrEmpty(edNit.Text))
-            {
-                MessageBox.Show("Debe ingresar un número de NIT");
-                edNit.Focus();
-                return;
-            }
-
-            if (edOrden.Value == 0)
-            {
-                MessageBox.Show("Debe ingresar un No. de Orden");
-                edOrden.Focus();
-                return;
-            }
+            if (!validateData()) return;
 
             btnGenerar.Enabled = false;
             edResultado.Text = "";
@@ -75,8 +64,16 @@ namespace AldeloInfileFel
 
             }
 
-            var noOrden = long.Parse(edOrden.Text);
-            var result = _invoiceService.GenerateInvoice(noOrden, edNit.Text, edNombre.Text, edCorreo.Text);
+            var consumerData = new ConsumerData
+            {
+                OrderId = long.Parse(edOrden.Text),
+                TaxId = edNit.Text,
+                TaxIdType = BuildTaxIdType(),
+                Name = edNombre.Text,
+                Email = edCorreo.Text
+            };
+
+            var result = _invoiceService.GenerateInvoice(consumerData);
 
             if (result.Success)
             {
@@ -204,6 +201,40 @@ namespace AldeloInfileFel
 
         }
 
+        private bool validateData()
+        {
+            if (string.IsNullOrEmpty(edNit.Text) && rbNit.Checked)
+            {
+                MessageBox.Show("Debe ingresar un número de NIT");
+                edNit.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(edNit.Text) && rbCui.Checked)
+            {
+                MessageBox.Show("Debe ingresar un número de CUI");
+                edNit.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(edNit.Text) && rbExt.Checked)
+            {
+                MessageBox.Show("Debe ingresar un número de Pasaporte");
+                edNit.Focus();
+                return false;
+            }
+
+            if (edOrden.Value == 0)
+            {
+                MessageBox.Show("Debe ingresar un No. de Orden");
+                edOrden.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+
         private void tmApiStatus_Tick(object sender, EventArgs e)
         {
             ShowApiStatus();
@@ -216,12 +247,73 @@ namespace AldeloInfileFel
 
         private void edNit_Leave(object sender, EventArgs e)
         {
-            edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+            if (rbNit.Checked && !string.IsNullOrEmpty(edNit.Text))
+            {
+                edNombre.Text = _invoiceService.QueryTaxId(edNit.Text);
+                return;
+            }
+
+            if (rbCui.Checked && !string.IsNullOrEmpty(edNit.Text))
+            {
+                edNombre.Text = _invoiceService.QueryId(edNit.Text);
+                return;
+            }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             _browser.Print();
         }
+
+        private void rbCui_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCui.Checked)
+            {
+                lbConsumer.Text = "CUI:";
+                edNit.Text = "";
+                edNombre.Text = "";
+            }
+        }
+
+        private void rbCF_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCF.Checked)
+            {
+                lbConsumer.Text = "NIT:";
+                edNit.Text = "CF";
+                edNombre.Text = "CONSUMIDOR FINAL";
+            }
+        }
+
+        private void rbNit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbNit.Checked)
+            {
+                lbConsumer.Text = "NIT:";
+                edNit.Text = "";
+                edNombre.Text = "";
+            }
+        }
+
+        private void rbExt_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbExt.Checked)
+            {
+                lbConsumer.Text = "Pasaporte:";
+                edNit.Text = "";
+                edNombre.Text = "";
+            }
+        }
+
+        private string BuildTaxIdType()
+        {
+            if (rbCui.Checked) return "CUI";
+
+            if (rbExt.Checked) return "EXT";
+
+            // For CF or NIT
+            return "";
+        }
+
     }
 }

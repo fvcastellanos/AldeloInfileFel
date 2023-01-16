@@ -31,7 +31,7 @@ namespace AldeloInfileFel
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbConsumer = new System.Windows.Forms.Label();
             this.edNit = new System.Windows.Forms.TextBox();
             this.edNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,6 +53,10 @@ namespace AldeloInfileFel
             this.tmApiStatus = new System.Windows.Forms.Timer(this.components);
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.rbCF = new System.Windows.Forms.RadioButton();
+            this.rbNit = new System.Windows.Forms.RadioButton();
+            this.rbCui = new System.Windows.Forms.RadioButton();
+            this.rbExt = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.edOrden)).BeginInit();
             this.gbFelStatus.SuspendLayout();
             this.SuspendLayout();
@@ -66,28 +70,29 @@ namespace AldeloInfileFel
             this.label1.TabIndex = 0;
             this.label1.Text = "No. Orden:";
             // 
-            // label2
+            // lbConsumer
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 97);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nit:";
+            this.lbConsumer.AutoSize = true;
+            this.lbConsumer.Location = new System.Drawing.Point(25, 157);
+            this.lbConsumer.Name = "lbConsumer";
+            this.lbConsumer.Size = new System.Drawing.Size(28, 13);
+            this.lbConsumer.TabIndex = 2;
+            this.lbConsumer.Text = "NIT:";
             // 
             // edNit
             // 
             this.edNit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edNit.Location = new System.Drawing.Point(86, 89);
+            this.edNit.Location = new System.Drawing.Point(85, 149);
             this.edNit.Name = "edNit";
             this.edNit.Size = new System.Drawing.Size(207, 26);
             this.edNit.TabIndex = 10;
+            this.edNit.Text = "CF";
             this.edNit.Leave += new System.EventHandler(this.edNit_Leave);
             // 
             // edNombre
             // 
             this.edNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edNombre.Location = new System.Drawing.Point(86, 132);
+            this.edNombre.Location = new System.Drawing.Point(85, 192);
             this.edNombre.Name = "edNombre";
             this.edNombre.Size = new System.Drawing.Size(380, 26);
             this.edNombre.TabIndex = 20;
@@ -95,7 +100,7 @@ namespace AldeloInfileFel
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 140);
+            this.label3.Location = new System.Drawing.Point(25, 200);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 5;
@@ -104,7 +109,7 @@ namespace AldeloInfileFel
             // edCorreo
             // 
             this.edCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edCorreo.Location = new System.Drawing.Point(86, 175);
+            this.edCorreo.Location = new System.Drawing.Point(85, 235);
             this.edCorreo.Name = "edCorreo";
             this.edCorreo.Size = new System.Drawing.Size(380, 26);
             this.edCorreo.TabIndex = 30;
@@ -112,7 +117,7 @@ namespace AldeloInfileFel
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 183);
+            this.label4.Location = new System.Drawing.Point(25, 243);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 7;
@@ -120,7 +125,7 @@ namespace AldeloInfileFel
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(333, 84);
+            this.btnLimpiar.Location = new System.Drawing.Point(332, 144);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(133, 39);
             this.btnLimpiar.TabIndex = 60;
@@ -131,7 +136,7 @@ namespace AldeloInfileFel
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(502, 52);
+            this.btnGenerar.Location = new System.Drawing.Point(507, 144);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(164, 106);
             this.btnGenerar.TabIndex = 40;
@@ -141,7 +146,7 @@ namespace AldeloInfileFel
             // 
             // edResultado
             // 
-            this.edResultado.Location = new System.Drawing.Point(29, 214);
+            this.edResultado.Location = new System.Drawing.Point(28, 274);
             this.edResultado.Multiline = true;
             this.edResultado.Name = "edResultado";
             this.edResultado.ReadOnly = true;
@@ -165,9 +170,9 @@ namespace AldeloInfileFel
             // 
             // pnBrowser
             // 
-            this.pnBrowser.Location = new System.Drawing.Point(28, 344);
+            this.pnBrowser.Location = new System.Drawing.Point(28, 406);
             this.pnBrowser.Name = "pnBrowser";
-            this.pnBrowser.Size = new System.Drawing.Size(638, 216);
+            this.pnBrowser.Size = new System.Drawing.Size(638, 154);
             this.pnBrowser.TabIndex = 120;
             // 
             // gbFelStatus
@@ -261,7 +266,7 @@ namespace AldeloInfileFel
             // btnImprimir
             // 
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(502, 298);
+            this.btnImprimir.Location = new System.Drawing.Point(501, 358);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(164, 40);
             this.btnImprimir.TabIndex = 50;
@@ -273,7 +278,7 @@ namespace AldeloInfileFel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(29, 298);
+            this.btnCancelar.Location = new System.Drawing.Point(28, 358);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(164, 40);
             this.btnCancelar.TabIndex = 70;
@@ -281,12 +286,65 @@ namespace AldeloInfileFel
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // rbCF
+            // 
+            this.rbCF.AutoSize = true;
+            this.rbCF.Checked = true;
+            this.rbCF.Location = new System.Drawing.Point(28, 106);
+            this.rbCF.Name = "rbCF";
+            this.rbCF.Size = new System.Drawing.Size(38, 17);
+            this.rbCF.TabIndex = 6;
+            this.rbCF.TabStop = true;
+            this.rbCF.Text = "CF";
+            this.rbCF.UseVisualStyleBackColor = true;
+            this.rbCF.CheckedChanged += new System.EventHandler(this.rbCF_CheckedChanged);
+            // 
+            // rbNit
+            // 
+            this.rbNit.AutoSize = true;
+            this.rbNit.Location = new System.Drawing.Point(125, 106);
+            this.rbNit.Name = "rbNit";
+            this.rbNit.Size = new System.Drawing.Size(43, 17);
+            this.rbNit.TabIndex = 7;
+            this.rbNit.TabStop = true;
+            this.rbNit.Text = "NIT";
+            this.rbNit.UseVisualStyleBackColor = true;
+            this.rbNit.CheckedChanged += new System.EventHandler(this.rbNit_CheckedChanged);
+            // 
+            // rbCui
+            // 
+            this.rbCui.AutoSize = true;
+            this.rbCui.Location = new System.Drawing.Point(332, 106);
+            this.rbCui.Name = "rbCui";
+            this.rbCui.Size = new System.Drawing.Size(43, 17);
+            this.rbCui.TabIndex = 9;
+            this.rbCui.TabStop = true;
+            this.rbCui.Text = "CUI";
+            this.rbCui.UseVisualStyleBackColor = true;
+            this.rbCui.CheckedChanged += new System.EventHandler(this.rbCui_CheckedChanged);
+            // 
+            // rbExt
+            // 
+            this.rbExt.AutoSize = true;
+            this.rbExt.Location = new System.Drawing.Point(210, 106);
+            this.rbExt.Name = "rbExt";
+            this.rbExt.Size = new System.Drawing.Size(72, 17);
+            this.rbExt.TabIndex = 8;
+            this.rbExt.TabStop = true;
+            this.rbExt.Text = "Extranjero";
+            this.rbExt.UseVisualStyleBackColor = true;
+            this.rbExt.CheckedChanged += new System.EventHandler(this.rbExt_CheckedChanged);
+            // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 572);
             this.ControlBox = false;
+            this.Controls.Add(this.rbExt);
+            this.Controls.Add(this.rbCui);
+            this.Controls.Add(this.rbNit);
+            this.Controls.Add(this.rbCF);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
@@ -300,7 +358,7 @@ namespace AldeloInfileFel
             this.Controls.Add(this.label3);
             this.Controls.Add(this.edNombre);
             this.Controls.Add(this.edNit);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbConsumer);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -322,7 +380,7 @@ namespace AldeloInfileFel
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbConsumer;
         private System.Windows.Forms.TextBox edNit;
         private System.Windows.Forms.TextBox edNombre;
         private System.Windows.Forms.Label label3;
@@ -344,6 +402,10 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.RadioButton rbCF;
+        private System.Windows.Forms.RadioButton rbNit;
+        private System.Windows.Forms.RadioButton rbCui;
+        private System.Windows.Forms.RadioButton rbExt;
     }
 }
 
