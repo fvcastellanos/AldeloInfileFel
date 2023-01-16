@@ -27,7 +27,6 @@ namespace AldeloInfileFel
 
             _browser = new ChromiumWebBrowser("about:blank");
             _browser.Dock = DockStyle.Fill;
-            pnBrowser.Controls.Add(_browser);
 
             var tokenService = new TokenService(new TokenRepository());
             _invoiceService = new InvoiceService(new OrderRepository(), tokenService);
@@ -155,8 +154,6 @@ namespace AldeloInfileFel
         {
             var url = _configuration.PreviewUrl.Replace("#value", UUID);
             var tempFile = Path.GetTempFileName();
-
-            // _browser.Load(url);
 
             var webClient = new WebClient();
             webClient.DownloadFile(url, tempFile);

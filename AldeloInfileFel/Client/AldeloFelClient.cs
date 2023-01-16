@@ -54,10 +54,13 @@ namespace AldeloInfileFel.Client
 
         private static InvoiceGenerationResponse BuildSuccessResponse(string message)
         {
+
+            var response = JsonConvert.DeserializeObject<GenerationResponse>(message);
+
             return new InvoiceGenerationResponse()
             {
                 Success = true,
-                Invoices = JsonConvert.DeserializeObject<List<InvoiceInformation>>(message),
+                Invoices = response.Invoices,
             };
         }
 

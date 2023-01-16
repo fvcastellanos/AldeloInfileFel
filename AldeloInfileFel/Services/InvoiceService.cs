@@ -39,7 +39,7 @@ namespace AldeloInfileFel.Services
                 var barDetails = details.Where(detail => detail.Bar);
                 var restaurantDetails = details.Where(detail => !detail.Bar);
 
-                var request = BuildGenerationRequest(orderId, taxId, name, email, barDetails, restaurantDetails, tipAmount);
+                var request = BuildGenerationRequest(consumerData, barDetails, restaurantDetails, tipAmount);
 
                 return AldeloFelClient.GenerateInvoiceRequest(request);
             } 
@@ -100,10 +100,7 @@ namespace AldeloInfileFel.Services
 
         // ---------------------------------------------------------------------------------------------------------
 
-        private GenerationRequest BuildGenerationRequest(long orderId, 
-                                                         string taxId, 
-                                                         string name, 
-                                                         string email, 
+        private GenerationRequest BuildGenerationRequest(ConsumerData consumerData, 
                                                          IEnumerable<OrderDetail> barDetails,
                                                          IEnumerable<OrderDetail> restaurantDetails,
                                                          double tipAmount)
@@ -112,13 +109,13 @@ namespace AldeloInfileFel.Services
             {
                 Invoices = new List<InvoiceGenerationRequest>
                 {
-                    BuildInvoiceGenerationRequest(orderId, taxId, name, email, restaurantDetails, tipAmount),
-                    BuildInvoiceGenerationRequest(orderId, taxId, name, email, barDetails, 0.00)
+                    BuildInvoiceGenerationRequest(consumerData, "RESTAURANT", restaurantDetails, tipAmount),
+                    BuildInvoiceGenerationRequest(consumerData, "BAR", barDetails, 0.00)
                 }
             };
         }
 
-        private InvoiceGenerationRequest BuildInvoiceGenerationRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details, double tipAmount)
+        private InvoiceGenerationRequest BuildInvoiceGenerationRequest(ConsumerData consumerData, string type, IEnumerable<OrderDetail> details, double tipAmount)
         {
             var isItemizedTip = IsItemizedTip();
 
@@ -128,6 +125,7 @@ namespace AldeloInfileFel.Services
 
                 return new InvoiceGenerationRequest()
                 {
+                    InvoiceType = type,
                     OrderId = consumerData.OrderId,
                     TaxId = consumerData.TaxId,
                     TaxIdType = consumerData.TaxIdType,

@@ -186,6 +186,8 @@
     <Compile Include="Client\InfileClient.cs" />
     <Compile Include="Domain\Configuration.cs" />
     <Compile Include="Domain\ConsumerData.cs" />
+    <Compile Include="Domain\GenerationRequest.cs" />
+    <Compile Include="Domain\GenerationResponse.cs" />
     <Compile Include="Domain\IdQueryApiToken.cs" />
     <Compile Include="Domain\IdQueryResponse.cs" />
     <Compile Include="Domain\IdResponse.cs" />

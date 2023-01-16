@@ -41,7 +41,6 @@ namespace AldeloInfileFel
             this.btnGenerar = new System.Windows.Forms.Button();
             this.edResultado = new System.Windows.Forms.TextBox();
             this.edOrden = new System.Windows.Forms.NumericUpDown();
-            this.pnBrowser = new System.Windows.Forms.Panel();
             this.gbFelStatus = new System.Windows.Forms.GroupBox();
             this.btnStatus = new System.Windows.Forms.Button();
             this.lbCertificate = new System.Windows.Forms.Label();
@@ -150,7 +149,7 @@ namespace AldeloInfileFel
             this.edResultado.Multiline = true;
             this.edResultado.Name = "edResultado";
             this.edResultado.ReadOnly = true;
-            this.edResultado.Size = new System.Drawing.Size(637, 78);
+            this.edResultado.Size = new System.Drawing.Size(637, 213);
             this.edResultado.TabIndex = 110;
             this.edResultado.TabStop = false;
             // 
@@ -167,13 +166,6 @@ namespace AldeloInfileFel
             this.edOrden.Name = "edOrden";
             this.edOrden.Size = new System.Drawing.Size(120, 26);
             this.edOrden.TabIndex = 5;
-            // 
-            // pnBrowser
-            // 
-            this.pnBrowser.Location = new System.Drawing.Point(28, 406);
-            this.pnBrowser.Name = "pnBrowser";
-            this.pnBrowser.Size = new System.Drawing.Size(638, 154);
-            this.pnBrowser.TabIndex = 120;
             // 
             // gbFelStatus
             // 
@@ -266,7 +258,7 @@ namespace AldeloInfileFel
             // btnImprimir
             // 
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(501, 358);
+            this.btnImprimir.Location = new System.Drawing.Point(502, 507);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(164, 40);
             this.btnImprimir.TabIndex = 50;
@@ -278,7 +270,7 @@ namespace AldeloInfileFel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(28, 358);
+            this.btnCancelar.Location = new System.Drawing.Point(29, 507);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(164, 40);
             this.btnCancelar.TabIndex = 70;
@@ -348,7 +340,6 @@ namespace AldeloInfileFel
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
-            this.Controls.Add(this.pnBrowser);
             this.Controls.Add(this.edOrden);
             this.Controls.Add(this.edResultado);
             this.Controls.Add(this.btnGenerar);
@@ -390,7 +381,6 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.TextBox edResultado;
         private System.Windows.Forms.NumericUpDown edOrden;
-        private System.Windows.Forms.Panel pnBrowser;
         private System.Windows.Forms.GroupBox gbFelStatus;
         private System.Windows.Forms.Label lbSignature;
         private System.Windows.Forms.Label label6;

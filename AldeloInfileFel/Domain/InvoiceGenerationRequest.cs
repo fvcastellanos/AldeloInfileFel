@@ -5,6 +5,9 @@ namespace AldeloInfileFel.Domain
 {
     public class InvoiceGenerationRequest
     {
+        [JsonProperty("type")]
+        public string InvoiceType { get; set; }
+
         [JsonProperty(PropertyName = "orderId")]
         public long OrderId { get; set; }
 
