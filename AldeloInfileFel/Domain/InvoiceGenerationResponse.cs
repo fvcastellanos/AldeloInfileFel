@@ -9,6 +9,8 @@ namespace AldeloInfileFel.Domain
 
         [JsonProperty(PropertyName = "errors")]
         public IEnumerable<string> Errors { get; set; }
-        public InvoiceInformation InvoiceInformation { get; set; }
+
+        [JsonProperty("invoices")]
+        public IEnumerable<InvoiceInformation> Invoices { get; set; }
     }
 }

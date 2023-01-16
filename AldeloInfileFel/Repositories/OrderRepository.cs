@@ -11,15 +11,18 @@ namespace AldeloInfileFel.Repositories
 {
     public class OrderRepository
     {
-        private const string OrderInformationQuery = "SELECT OrderTransactions.OrderID, OrderTransactions.MenuItemID as ItemID, " +
+        private const string OrderInformationQuery = 
+            
+            " SELECT OrderTransactions.OrderID, OrderTransactions.MenuItemID as ItemID, " +
             "  OrderTransactions.MenuItemUnitPrice as UnitPrice, OrderTransactions.Quantity as Quantity, " +
-            "  OrderTransactions.DiscountAmountUsed as DiscountAmount, " +
+            "  OrderTransactions.DiscountAmountUsed as DiscountAmount, MenuItems.Bar, " +
             "  MenuItems.MenuItemText as ItemText, MenuItems.MenuItemDescription as ItemDescription" +
             " FROM MenuItems " +
             "   INNER JOIN OrderTransactions ON MenuItems.MenuItemID = OrderTransactions.MenuItemID" +
             " WHERE OrderTransactions.TransactionStatus = '1' AND OrderTransactions.OrderID = @Id";
 
         private readonly Configuration configuration;
+
         public OrderRepository()
         {
             this.configuration = ConfigurationService.LoadConfiguration();

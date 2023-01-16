@@ -10,5 +10,6 @@
         public double DiscountTaxable { get; set; }
         public string ItemText { get; set; }
         public string ItemDescription { get; set; }
+        public bool Bar {  get; set; }
     }
 }

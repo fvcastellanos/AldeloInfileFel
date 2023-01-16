@@ -1,6 +1,8 @@
 ﻿using AldeloInfileFel.Domain;
 using AldeloInfileFel.Services;
 using Newtonsoft.Json;
+using System.Collections;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,7 +14,7 @@ namespace AldeloInfileFel.Client
         private static readonly HttpClient _client = new HttpClient();
         private static readonly Configuration _configuration = ConfigurationService.LoadConfiguration();
 
-        public static InvoiceGenerationResponse GenerateInvoiceRequest(InvoiceGenerationRequest request)
+        public static InvoiceGenerationResponse GenerateInvoiceRequest(GenerationRequest request)
         {            
             var apiUrl = _configuration.FelApiUrl;
             var payload = JsonConvert.SerializeObject(request);
@@ -55,7 +57,7 @@ namespace AldeloInfileFel.Client
             return new InvoiceGenerationResponse()
             {
                 Success = true,
-                InvoiceInformation = JsonConvert.DeserializeObject<InvoiceInformation>(message),
+                Invoices = JsonConvert.DeserializeObject<List<InvoiceInformation>>(message),
             };
         }
 

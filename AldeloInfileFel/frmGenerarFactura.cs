@@ -80,7 +80,7 @@ namespace AldeloInfileFel
 
             if (result.Success)
             {
-                PresentarResultado(result.InvoiceInformation);
+                PresentarResultado(result.Invoices);
                 btnGenerar.Enabled = true;
                 return;
             }
@@ -107,17 +107,27 @@ namespace AldeloInfileFel
             edResultado.Text = mensaje.ToString();
         }
 
-        private void PresentarResultado(InvoiceInformation invoiceInformation)
+        private void PresentarResultado(IEnumerable<InvoiceInformation> invoicesInformation)
         {
             var builder = new StringBuilder();
 
-            builder.AppendLine("UUID: " + invoiceInformation.UUID);
-            builder.AppendLine("Fecha certificacion: " + invoiceInformation.Date);
-            builder.AppendLine("Correlativo: " + invoiceInformation.Correlative);
-            builder.AppendLine("Origen: " + invoiceInformation.Origin);
+            var invoiceInformationList = invoicesInformation.ToList();
+
+            invoiceInformationList.ForEach(invoiceInformation =>
+            {
+                builder.AppendLine("UUID: " + invoiceInformation.UUID);
+                builder.AppendLine("Fecha certificacion: " + invoiceInformation.Date);
+                builder.AppendLine("Correlativo: " + invoiceInformation.Correlative);
+                builder.AppendLine("Origen: " + invoiceInformation.Origin);
+                builder.AppendLine("\n\n");
+            });
+
+            var invoices = invoicesInformation.Select(invoiceInformation => invoiceInformation.UUID)
+                .ToList();
 
             edResultado.Text = builder.ToString();
-            ImprimirFactura(invoiceInformation.UUID);
+
+            invoices.ForEach(ImprimirFactura);
         }
 
         private void ObtenerOrden()
@@ -149,7 +159,7 @@ namespace AldeloInfileFel
             var url = _configuration.PreviewUrl.Replace("#value", UUID);
             var tempFile = Path.GetTempFileName();
 
-            _browser.Load(url);
+            // _browser.Load(url);
 
             var webClient = new WebClient();
             webClient.DownloadFile(url, tempFile);

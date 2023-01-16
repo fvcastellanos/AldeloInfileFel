@@ -155,6 +155,8 @@
     <Compile Include="Client\AldeloFelClient.cs" />
     <Compile Include="Client\InfileClient.cs" />
     <Compile Include="Domain\Configuration.cs" />
+    <Compile Include="Domain\GenerationRequest.cs" />
+    <Compile Include="Domain\GenerationResponse.cs" />
     <Compile Include="Domain\InfileDetails.cs" />
     <Compile Include="Domain\InFileStatus.cs" />
     <Compile Include="Domain\InvoiceGenerationErrorResponse.cs" />

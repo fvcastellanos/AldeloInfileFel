@@ -26,7 +26,10 @@ namespace AldeloInfileFel.Services
                 var details = _orderRepository.GetOrderDetails(orderId);
                 var tipAmount = _orderRepository.GetTipAmount(orderId);
 
-                var request = BuildRequest(orderId, taxId, name, email, details, tipAmount);
+                var barDetails = details.Where(detail => detail.Bar);
+                var restaurantDetails = details.Where(detail => !detail.Bar);
+
+                var request = BuildGenerationRequest(orderId, taxId, name, email, barDetails, restaurantDetails, tipAmount);
 
                 return AldeloFelClient.GenerateInvoiceRequest(request);
             } 
@@ -62,7 +65,25 @@ namespace AldeloInfileFel.Services
 
         // ---------------------------------------------------------------------------------------------------------
 
-        private InvoiceGenerationRequest BuildRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details, double tipAmount)
+        private GenerationRequest BuildGenerationRequest(long orderId, 
+                                                         string taxId, 
+                                                         string name, 
+                                                         string email, 
+                                                         IEnumerable<OrderDetail> barDetails,
+                                                         IEnumerable<OrderDetail> restaurantDetails,
+                                                         double tipAmount)
+        {
+            return new GenerationRequest
+            {
+                Invoices = new List<InvoiceGenerationRequest>
+                {
+                    BuildInvoiceGenerationRequest(orderId, taxId, name, email, restaurantDetails, tipAmount),
+                    BuildInvoiceGenerationRequest(orderId, taxId, name, email, barDetails, 0.00)
+                }
+            };
+        }
+
+        private InvoiceGenerationRequest BuildInvoiceGenerationRequest(long orderId, string taxId, string name, string email, IEnumerable<OrderDetail> details, double tipAmount)
         {
             var isItemizedTip = IsItemizedTip();
 
