@@ -111,6 +111,7 @@ namespace AldeloInfileFel
 
             invoiceInformationList.ForEach(invoiceInformation =>
             {
+                builder.AppendLine("Tipo Factura: " + invoiceInformation.Type);
                 builder.AppendLine("UUID: " + invoiceInformation.UUID);
                 builder.AppendLine("Fecha certificacion: " + invoiceInformation.Date);
                 builder.AppendLine("Correlativo: " + invoiceInformation.Correlative);
@@ -255,11 +256,6 @@ namespace AldeloInfileFel
                 edNombre.Text = _invoiceService.QueryId(edNit.Text);
                 return;
             }
-        }
-
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            _browser.Print();
         }
 
         private void rbCui_CheckedChanged(object sender, EventArgs e)

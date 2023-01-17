@@ -9,6 +9,7 @@ namespace AldeloInfileFel.Domain
         public string Description { get; set; }
         public string Date { get; set; }
         public string Origin { get; set; }
+        public string Type { get; set; }
     }
 
 }

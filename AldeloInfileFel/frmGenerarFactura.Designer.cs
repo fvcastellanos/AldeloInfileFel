@@ -50,7 +50,6 @@ namespace AldeloInfileFel
             this.lbApiStatus = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tmApiStatus = new System.Windows.Forms.Timer(this.components);
-            this.btnImprimir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.rbCF = new System.Windows.Forms.RadioButton();
             this.rbNit = new System.Windows.Forms.RadioButton();
@@ -255,17 +254,6 @@ namespace AldeloInfileFel
             this.tmApiStatus.Tag = "";
             this.tmApiStatus.Tick += new System.EventHandler(this.tmApiStatus_Tick);
             // 
-            // btnImprimir
-            // 
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(502, 507);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(164, 40);
-            this.btnImprimir.TabIndex = 50;
-            this.btnImprimir.Text = "Reimprimir Factura";
-            this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -338,7 +326,6 @@ namespace AldeloInfileFel
             this.Controls.Add(this.rbNit);
             this.Controls.Add(this.rbCF);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gbFelStatus);
             this.Controls.Add(this.edOrden);
             this.Controls.Add(this.edResultado);
@@ -390,7 +377,6 @@ namespace AldeloInfileFel
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Timer tmApiStatus;
         private System.Windows.Forms.Button btnStatus;
-        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.RadioButton rbCF;
         private System.Windows.Forms.RadioButton rbNit;
