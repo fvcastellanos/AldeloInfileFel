@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CefSharp.WinForms;
-using CefSharp;
 using Spire.Pdf;
 
 namespace AldeloInfileFel
@@ -20,6 +19,7 @@ namespace AldeloInfileFel
         private readonly InvoiceService _invoiceService;
         private readonly ChromiumWebBrowser _browser;
         private readonly Configuration _configuration;
+        private List<string> _generatedUUIDList;
 
         public frmInvoice()
         {
@@ -52,9 +52,11 @@ namespace AldeloInfileFel
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
+
             if (!validateData()) return;
 
             btnGenerar.Enabled = false;
+            btnPrintInvoice.Enabled = false;
             edResultado.Text = "";
 
             if (string.IsNullOrEmpty(edNombre.Text))
@@ -78,6 +80,8 @@ namespace AldeloInfileFel
             {
                 PresentarResultado(result.Invoices);
                 btnGenerar.Enabled = true;
+                btnPrintInvoice.Enabled = true;
+
                 return;
             }
 
@@ -123,8 +127,7 @@ namespace AldeloInfileFel
                 .ToList();
 
             edResultado.Text = builder.ToString();
-
-            invoices.ForEach(ImprimirFactura);
+            _generatedUUIDList = invoices;
         }
 
         private void ObtenerOrden()
@@ -308,5 +311,12 @@ namespace AldeloInfileFel
             return "";
         }
 
+        private void btnPrintInvoice_Click(object sender, EventArgs e)
+        {
+            if (_generatedUUIDList != null)
+            {
+                _generatedUUIDList.ForEach(ImprimirFactura);
+            }
+        }
     }
 }

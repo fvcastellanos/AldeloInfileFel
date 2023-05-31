@@ -55,6 +55,7 @@ namespace AldeloInfileFel
             this.rbNit = new System.Windows.Forms.RadioButton();
             this.rbCui = new System.Windows.Forms.RadioButton();
             this.rbExt = new System.Windows.Forms.RadioButton();
+            this.btnPrintInvoice = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.edOrden)).BeginInit();
             this.gbFelStatus.SuspendLayout();
             this.SuspendLayout();
@@ -62,27 +63,30 @@ namespace AldeloInfileFel
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 57);
+            this.label1.Location = new System.Drawing.Point(38, 88);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(85, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "No. Orden:";
             // 
             // lbConsumer
             // 
             this.lbConsumer.AutoSize = true;
-            this.lbConsumer.Location = new System.Drawing.Point(25, 157);
+            this.lbConsumer.Location = new System.Drawing.Point(38, 242);
+            this.lbConsumer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbConsumer.Name = "lbConsumer";
-            this.lbConsumer.Size = new System.Drawing.Size(28, 13);
+            this.lbConsumer.Size = new System.Drawing.Size(38, 20);
             this.lbConsumer.TabIndex = 2;
             this.lbConsumer.Text = "NIT:";
             // 
             // edNit
             // 
             this.edNit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edNit.Location = new System.Drawing.Point(85, 149);
+            this.edNit.Location = new System.Drawing.Point(128, 229);
+            this.edNit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edNit.Name = "edNit";
-            this.edNit.Size = new System.Drawing.Size(207, 26);
+            this.edNit.Size = new System.Drawing.Size(308, 35);
             this.edNit.TabIndex = 10;
             this.edNit.Text = "CF";
             this.edNit.Leave += new System.EventHandler(this.edNit_Leave);
@@ -90,42 +94,47 @@ namespace AldeloInfileFel
             // edNombre
             // 
             this.edNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edNombre.Location = new System.Drawing.Point(85, 192);
+            this.edNombre.Location = new System.Drawing.Point(128, 295);
+            this.edNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edNombre.Name = "edNombre";
-            this.edNombre.Size = new System.Drawing.Size(380, 26);
+            this.edNombre.Size = new System.Drawing.Size(568, 35);
             this.edNombre.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 200);
+            this.label3.Location = new System.Drawing.Point(38, 308);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Nombre:";
             // 
             // edCorreo
             // 
             this.edCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edCorreo.Location = new System.Drawing.Point(85, 235);
+            this.edCorreo.Location = new System.Drawing.Point(128, 362);
+            this.edCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edCorreo.Name = "edCorreo";
-            this.edCorreo.Size = new System.Drawing.Size(380, 26);
+            this.edCorreo.Size = new System.Drawing.Size(568, 35);
             this.edCorreo.TabIndex = 30;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 243);
+            this.label4.Location = new System.Drawing.Point(38, 374);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.Size = new System.Drawing.Size(61, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Correo:";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(332, 144);
+            this.btnLimpiar.Location = new System.Drawing.Point(498, 222);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(133, 39);
+            this.btnLimpiar.Size = new System.Drawing.Size(200, 60);
             this.btnLimpiar.TabIndex = 60;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -134,9 +143,10 @@ namespace AldeloInfileFel
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(507, 144);
+            this.btnGenerar.Location = new System.Drawing.Point(760, 222);
+            this.btnGenerar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(164, 106);
+            this.btnGenerar.Size = new System.Drawing.Size(246, 163);
             this.btnGenerar.TabIndex = 40;
             this.btnGenerar.Text = "Generar Factura";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -144,11 +154,12 @@ namespace AldeloInfileFel
             // 
             // edResultado
             // 
-            this.edResultado.Location = new System.Drawing.Point(28, 274);
+            this.edResultado.Location = new System.Drawing.Point(42, 422);
+            this.edResultado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edResultado.Multiline = true;
             this.edResultado.Name = "edResultado";
             this.edResultado.ReadOnly = true;
-            this.edResultado.Size = new System.Drawing.Size(637, 213);
+            this.edResultado.Size = new System.Drawing.Size(954, 326);
             this.edResultado.TabIndex = 110;
             this.edResultado.TabStop = false;
             // 
@@ -156,14 +167,15 @@ namespace AldeloInfileFel
             // 
             this.edOrden.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.edOrden.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.edOrden.Location = new System.Drawing.Point(90, 55);
+            this.edOrden.Location = new System.Drawing.Point(135, 85);
+            this.edOrden.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edOrden.Maximum = new decimal(new int[] {
             1084293119,
             -1718009309,
             429496729,
             0});
             this.edOrden.Name = "edOrden";
-            this.edOrden.Size = new System.Drawing.Size(120, 26);
+            this.edOrden.Size = new System.Drawing.Size(180, 35);
             this.edOrden.TabIndex = 5;
             // 
             // gbFelStatus
@@ -175,18 +187,21 @@ namespace AldeloInfileFel
             this.gbFelStatus.Controls.Add(this.label6);
             this.gbFelStatus.Controls.Add(this.lbApiStatus);
             this.gbFelStatus.Controls.Add(this.label5);
-            this.gbFelStatus.Location = new System.Drawing.Point(12, 5);
+            this.gbFelStatus.Location = new System.Drawing.Point(18, 8);
+            this.gbFelStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbFelStatus.Name = "gbFelStatus";
-            this.gbFelStatus.Size = new System.Drawing.Size(654, 44);
+            this.gbFelStatus.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbFelStatus.Size = new System.Drawing.Size(981, 68);
             this.gbFelStatus.TabIndex = 63;
             this.gbFelStatus.TabStop = false;
             this.gbFelStatus.Text = "Estado FEL";
             // 
             // btnStatus
             // 
-            this.btnStatus.Location = new System.Drawing.Point(367, 11);
+            this.btnStatus.Location = new System.Drawing.Point(550, 17);
+            this.btnStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnStatus.Name = "btnStatus";
-            this.btnStatus.Size = new System.Drawing.Size(75, 23);
+            this.btnStatus.Size = new System.Drawing.Size(112, 35);
             this.btnStatus.TabIndex = 100;
             this.btnStatus.Text = "Estado";
             this.btnStatus.UseVisualStyleBackColor = true;
@@ -195,36 +210,40 @@ namespace AldeloInfileFel
             // lbCertificate
             // 
             this.lbCertificate.AutoSize = true;
-            this.lbCertificate.Location = new System.Drawing.Point(318, 16);
+            this.lbCertificate.Location = new System.Drawing.Point(477, 25);
+            this.lbCertificate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCertificate.Name = "lbCertificate";
-            this.lbCertificate.Size = new System.Drawing.Size(22, 13);
+            this.lbCertificate.Size = new System.Drawing.Size(31, 20);
             this.lbCertificate.TabIndex = 5;
             this.lbCertificate.Text = "UP";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(223, 16);
+            this.label7.Location = new System.Drawing.Point(334, 25);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 13);
+            this.label7.Size = new System.Drawing.Size(143, 20);
             this.label7.TabIndex = 4;
             this.label7.Text = "Certificación InFile:";
             // 
             // lbSignature
             // 
             this.lbSignature.AutoSize = true;
-            this.lbSignature.Location = new System.Drawing.Point(183, 16);
+            this.lbSignature.Location = new System.Drawing.Point(274, 25);
+            this.lbSignature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSignature.Name = "lbSignature";
-            this.lbSignature.Size = new System.Drawing.Size(22, 13);
+            this.lbSignature.Size = new System.Drawing.Size(31, 20);
             this.lbSignature.TabIndex = 3;
             this.lbSignature.Text = "UP";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(114, 16);
+            this.label6.Location = new System.Drawing.Point(171, 25);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.Size = new System.Drawing.Size(96, 20);
             this.label6.TabIndex = 2;
             this.label6.Text = "Firma InFile:";
             // 
@@ -232,18 +251,20 @@ namespace AldeloInfileFel
             // 
             this.lbApiStatus.AutoSize = true;
             this.lbApiStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbApiStatus.Location = new System.Drawing.Point(63, 16);
+            this.lbApiStatus.Location = new System.Drawing.Point(94, 25);
+            this.lbApiStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbApiStatus.Name = "lbApiStatus";
-            this.lbApiStatus.Size = new System.Drawing.Size(22, 13);
+            this.lbApiStatus.Size = new System.Drawing.Size(31, 20);
             this.lbApiStatus.TabIndex = 1;
             this.lbApiStatus.Text = "UP";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 16);
+            this.label5.Location = new System.Drawing.Point(20, 25);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.Size = new System.Drawing.Size(65, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "API Fel:";
             // 
@@ -258,9 +279,10 @@ namespace AldeloInfileFel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(29, 507);
+            this.btnCancelar.Location = new System.Drawing.Point(44, 780);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(164, 40);
+            this.btnCancelar.Size = new System.Drawing.Size(246, 62);
             this.btnCancelar.TabIndex = 70;
             this.btnCancelar.Text = "Cerrar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -270,9 +292,10 @@ namespace AldeloInfileFel
             // 
             this.rbCF.AutoSize = true;
             this.rbCF.Checked = true;
-            this.rbCF.Location = new System.Drawing.Point(28, 106);
+            this.rbCF.Location = new System.Drawing.Point(42, 163);
+            this.rbCF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbCF.Name = "rbCF";
-            this.rbCF.Size = new System.Drawing.Size(38, 17);
+            this.rbCF.Size = new System.Drawing.Size(55, 24);
             this.rbCF.TabIndex = 6;
             this.rbCF.TabStop = true;
             this.rbCF.Text = "CF";
@@ -282,9 +305,10 @@ namespace AldeloInfileFel
             // rbNit
             // 
             this.rbNit.AutoSize = true;
-            this.rbNit.Location = new System.Drawing.Point(125, 106);
+            this.rbNit.Location = new System.Drawing.Point(188, 163);
+            this.rbNit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbNit.Name = "rbNit";
-            this.rbNit.Size = new System.Drawing.Size(43, 17);
+            this.rbNit.Size = new System.Drawing.Size(59, 24);
             this.rbNit.TabIndex = 7;
             this.rbNit.TabStop = true;
             this.rbNit.Text = "NIT";
@@ -294,9 +318,10 @@ namespace AldeloInfileFel
             // rbCui
             // 
             this.rbCui.AutoSize = true;
-            this.rbCui.Location = new System.Drawing.Point(332, 106);
+            this.rbCui.Location = new System.Drawing.Point(498, 163);
+            this.rbCui.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbCui.Name = "rbCui";
-            this.rbCui.Size = new System.Drawing.Size(43, 17);
+            this.rbCui.Size = new System.Drawing.Size(62, 24);
             this.rbCui.TabIndex = 9;
             this.rbCui.TabStop = true;
             this.rbCui.Text = "CUI";
@@ -306,21 +331,35 @@ namespace AldeloInfileFel
             // rbExt
             // 
             this.rbExt.AutoSize = true;
-            this.rbExt.Location = new System.Drawing.Point(210, 106);
+            this.rbExt.Location = new System.Drawing.Point(315, 163);
+            this.rbExt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbExt.Name = "rbExt";
-            this.rbExt.Size = new System.Drawing.Size(72, 17);
+            this.rbExt.Size = new System.Drawing.Size(106, 24);
             this.rbExt.TabIndex = 8;
             this.rbExt.TabStop = true;
             this.rbExt.Text = "Extranjero";
             this.rbExt.UseVisualStyleBackColor = true;
             this.rbExt.CheckedChanged += new System.EventHandler(this.rbExt_CheckedChanged);
             // 
+            // btnPrintInvoice
+            // 
+            this.btnPrintInvoice.Enabled = false;
+            this.btnPrintInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintInvoice.Location = new System.Drawing.Point(750, 782);
+            this.btnPrintInvoice.Name = "btnPrintInvoice";
+            this.btnPrintInvoice.Size = new System.Drawing.Size(246, 62);
+            this.btnPrintInvoice.TabIndex = 111;
+            this.btnPrintInvoice.Text = "Imprimir Factura";
+            this.btnPrintInvoice.UseVisualStyleBackColor = true;
+            this.btnPrintInvoice.Click += new System.EventHandler(this.btnPrintInvoice_Click);
+            // 
             // frmInvoice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 572);
+            this.ClientSize = new System.Drawing.Size(1024, 880);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrintInvoice);
             this.Controls.Add(this.rbExt);
             this.Controls.Add(this.rbCui);
             this.Controls.Add(this.rbNit);
@@ -339,7 +378,6 @@ namespace AldeloInfileFel
             this.Controls.Add(this.lbConsumer);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInvoice";
@@ -382,6 +420,7 @@ namespace AldeloInfileFel
         private System.Windows.Forms.RadioButton rbNit;
         private System.Windows.Forms.RadioButton rbCui;
         private System.Windows.Forms.RadioButton rbExt;
+        private System.Windows.Forms.Button btnPrintInvoice;
     }
 }
 

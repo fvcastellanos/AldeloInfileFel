@@ -39,9 +39,19 @@ namespace AldeloInfileFel.Services
                 var barDetails = details.Where(detail => detail.Bar);
                 var restaurantDetails = details.Where(detail => !detail.Bar);
 
-                var request = BuildGenerationRequest(consumerData, barDetails, restaurantDetails, tipAmount);
+                var preRequest = BuildGenerationRequest(consumerData, barDetails, restaurantDetails, tipAmount);
 
-                return AldeloFelClient.GenerateInvoiceRequest(request);
+                // Filter generation requests that have a total of 0
+                var invoices = preRequest.Invoices
+                        .Where(req => !NonValueGenerationRequest(req))
+                        .ToList();
+
+                var sanitizedRequest = new GenerationRequest
+                {
+                    Invoices = invoices
+                };
+
+                return AldeloFelClient.GenerateInvoiceRequest(sanitizedRequest);
             } 
             catch (Exception exception)
             {
@@ -121,7 +131,9 @@ namespace AldeloInfileFel.Services
 
             if (isItemizedTip)
             {
-                var detailsWithTip = details.Append(BuildTipAsOrderDetail(tipAmount));
+
+                var detailsWithTip = tipAmount > 0 ? details.Append(BuildTipAsOrderDetail(tipAmount))
+                    : details;
 
                 return new InvoiceGenerationRequest()
                 {
@@ -214,6 +226,15 @@ namespace AldeloInfileFel.Services
             }
 
             return true;
+        }
+
+        private bool NonValueGenerationRequest(InvoiceGenerationRequest invoiceGenerationRequest)
+        {
+            var totalItems = invoiceGenerationRequest.Details
+                .Select(detail => detail.UnitPrice * detail.Quantity)
+                .Sum();
+
+            return totalItems + invoiceGenerationRequest.TipAmount == 0;
         }
 
     }
